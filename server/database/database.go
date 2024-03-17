@@ -13,14 +13,13 @@ type DbCluster struct {
 }
 
 type Db struct {
-	*DbCluster
+	Cluster *DbCluster
 }
 
 var dbInstance *Db
 
 func Init() {
 	host := os.Getenv("HOST")
-	//port := os.Getenv("DB_PORT")
 	username := os.Getenv("USERNAME")
 	password := os.Getenv("PASSWORD")
 	dbName := os.Getenv("DB_NAME")
@@ -40,13 +39,11 @@ func Init() {
 
 	log.Println("Database connection successful")
 
-	SetCluster(&DbCluster{master: db})
+	dbInstance = &Db{
+		Cluster: &DbCluster{master: db},
+	}
 }
 
 func GetCluster() *Db {
 	return dbInstance
-}
-
-func SetCluster(cluster *DbCluster) {
-	dbInstance = &Db{cluster}
 }
