@@ -12,10 +12,5 @@ func PublicRoutes(ctx context.Context, s *Server) (err error) {
 		})
 	})
 
-	user := s.Engine.Group("/api/v1/user")
-	{
-		user.POST("/login", userController.Login)
-	}
-
 	return
 }

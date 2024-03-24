@@ -22,13 +22,15 @@ func Init() {
 	host := os.Getenv("HOST")
 	username := os.Getenv("USERNAME")
 	password := os.Getenv("PASSWORD")
+	port := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
 
 	dsn := fmt.Sprintf(
-		"postgresql://%s:%s@%s/%s?sslmode=require",
+		"postgres://%s:%s@%s:%s/%s",
 		username,
 		password,
 		host,
+		port,
 		dbName,
 	)
 

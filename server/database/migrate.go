@@ -1,10 +1,8 @@
 package database
 
-import "github.com/projects/watch-list/server/core/domain/models"
-
 func Migrate() {
-	err := GetCluster().Cluster.master.AutoMigrate(&models.User{})
+	err := GetCluster().Cluster.master.AutoMigrate()
 	if err != nil {
-		panic("Failed to migrate user table")
+		//panic("Failed to migrate user table") // TODO
 	}
 }
