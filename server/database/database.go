@@ -9,7 +9,7 @@ import (
 )
 
 type DbCluster struct {
-	master *gorm.DB
+	Master *gorm.DB
 }
 
 type Db struct {
@@ -42,7 +42,7 @@ func Init() {
 	log.Println("Database connection successful")
 
 	dbInstance = &Db{
-		Cluster: &DbCluster{master: db},
+		Cluster: &DbCluster{Master: db},
 	}
 }
 

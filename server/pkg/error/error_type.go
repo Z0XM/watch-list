@@ -24,7 +24,7 @@ const (
 	FormSerializationError   Code = "FORM_SERIALIZATION_ERROR"
 	UserNotFoundInCtx        Code = "USER_NOT_FOUND_IN_CTX"
 	UserTypeNotFoundInCtx    Code = "USER_TYPE_NOT_FOUND_IN_CTX"
-	RulesNotFoundInCtx       Code = "RULES_NOT_FOUND_IN_CTX"
+	EmailNotFoundInCtx       Code = "EMAIL_NOT_FOUND_IN_CTX"
 	PlanNotFoundInCtx        Code = "PLAN_NOT_FOUND_IN_CTX"
 	PermissionsNotFoundInCtx Code = "PERMISSIONS_NOT_FOUND_IN_CTX"
 )
