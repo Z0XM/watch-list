@@ -1,46 +1,46 @@
 "use client";
+
 // import * as React from "react"
 
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/assets/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast, Toaster } from "sonner";
-// import { Label } from "@/components/ui/label";
-import { useRef, useState } from "react";
-import Link from "next/link";
+import { Label } from "@/components/ui/label";
+import { useState, useRef } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import Link from "next/link";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthFormSignIn({ className, ...props }: UserAuthFormProps) {
+    // const [isLoading, setIsLoading] = useState<boolean>(false);
     const [disableInput, setDisableInput] = useState<boolean>(false);
     const userEmailRef = useRef<HTMLInputElement | null>(null);
     const userPasswordRef = useRef<HTMLInputElement | null>(null);
-    const supabase = createClientComponentClient();
     const router = useRouter();
+    const supabase = createClientComponentClient();
 
     const onSubmit = async () => {
         setDisableInput(true);
-        console.log(userEmailRef.current?.value);
-        console.log(userPasswordRef.current?.value);
-        const useremail = userEmailRef.current?.value;
+        const email = userEmailRef.current?.value;
         const password = userPasswordRef.current?.value;
 
-        if (!useremail) {
-            toast.error("Please enter your email id");
+        if (!email) {
+            toast.error("Please enter your email");
             setDisableInput(false);
             return;
         }
         if (!password) {
-            toast.error("Enter your password");
+            toast.error("Please enter your password");
             setDisableInput(false);
             return;
         }
 
-        const { data, error } = await supabase.auth.signUp({
-            email: useremail,
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
             password,
         });
 
@@ -71,6 +71,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             autoCorrect="off"
                             ref={userEmailRef}
                             disabled={disableInput}
+                            required
                         />
                     </div>
                     <div className="grid gap-1">
@@ -83,10 +84,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             autoCorrect="off"
                             ref={userPasswordRef}
                             disabled={disableInput}
+                            required
                         />
-                    </div>
-
-                    <Button type="submit">Sign Up with Email</Button>
+                    </div>  
+                    <Button type="submit">Sign In with Email</Button>
                 </div>
             </form>
             <div className="relative">
@@ -103,10 +104,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                     <div className="flex flex-col space-y-2 text-center">
                         <h1 className="text-xl font-semibold tracking-tight">
-                            Already have an account?
+                            Don't have an account?
                         </h1>
-                        <button className="bg-slate-200 rounded p-2">
-                            <Link href={"/login"}>Go to Sign In page</Link>
+                        <button className=" bg-slate-200 rounded p-2">
+                            <Link href={"/signup"}>Go to Sign Up page</Link>
                         </button>
                     </div>
                 </div>
