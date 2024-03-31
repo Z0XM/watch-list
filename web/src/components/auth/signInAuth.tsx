@@ -1,12 +1,8 @@
 "use client";
 
-// import * as React from "react"
-
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/assets/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useState, useRef } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
@@ -16,7 +12,6 @@ import { useRouter } from "next/navigation";
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthFormSignIn({ className, ...props }: UserAuthFormProps) {
-    // const [isLoading, setIsLoading] = useState<boolean>(false);
     const [disableInput, setDisableInput] = useState<boolean>(false);
     const userEmailRef = useRef<HTMLInputElement | null>(null);
     const userPasswordRef = useRef<HTMLInputElement | null>(null);

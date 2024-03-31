@@ -13,14 +13,13 @@ export default function homepage() {
 
     return (
         <>
-            <div className="w-full bg-slate-400 flex flex-col gap-2 justify-center align-middle">
-                <p>Hello from Home Page</p>
-
-                <div className="lex flex-col gap-2 justify-center align-middle">
-                    <button className=" bg-slate-200 rounded p-2">
+            <div className="w-screen h-screen bg-slate-400 flex flex-col gap-2 justify-center items-center">
+                <p className="text-stone-300">Hello from Home Page</p>
+                <div className="flex flex-col gap-2 justify-center items-center">
+                    <button className=" bg-zinc-200 rounded p-2">
                         <Link href={"/signup"}>Sign Up</Link>
                     </button>
-                    <button className=" bg-slate-200 rounded p-2">
+                    <button className=" bg-zinc-200 rounded p-2">
                         <Link href={"/login"}>Login</Link>
                     </button>
                 </div>
